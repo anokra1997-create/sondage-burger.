@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>L’Atelier du Burger – Enquête Menu Kebab</title>
+  <style>
+    body {
+      background: #F7F3EF;
+      display: flex;
+      justify-content: center;
+      padding: 40px 10px;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      width: 420px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      border-top: 6px solid #3E2723;
+    }
+    .title {
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      text-align: center;
+      color: #3E2723;
+      margin-bottom: 20px;
+    }
+    .description {
+      background: #FDF8F4;
+      padding: 12px;
+      border-left: 4px solid #A1887F;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background: #3E2723;
+      color: white;
+      border: none;
+      border-radius: 999px;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    /* زر الإدارة */
+    #adminBtn {
+      margin-top: 20px;
+      background: #444;
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    /* بوكس كلمة السر */
+    #passwordBox {
+      display: none;
+      margin-top: 20px;
+      background: #EEE;
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    /* النتائج */
+    #resultsBox {
+      display: none;
+      margin-top: 20px;
+      padding: 12px;
+      background: #EFE7E3;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #3E2723;
+    }
+
+    /* زر التصفير */
+    #resetBtn {
+      display: none;
+      margin-top: 10px;
+      background: #b71c1c;
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <h1 class="title">L’Atelier du Burger</h1>
+    <p class="subtitle">Votre avis nous intéresse</p>
+
+    <p class="description">
+      Nous réfléchissons à l’ajout d’un <strong>Menu Kebab</strong> à notre carte.<br>
+      Merci de répondre à cette question.
+    </p>
+
+    <form id="surveyForm">
+      <label>Souhaitez-vous que nous ajoutions un Menu Kebab ?</label><br><br>
+
+      <input type="radio" name="vote" value="oui" required> Oui  
+      <br><br>
+      <input type="radio" name="vote" value="non"> Non  
+
+      <button type="submit" class="submit-btn">Envoyer</button>
+    </form>
+
+    <!-- زر الإدارة -->
+    <button id="adminBtn">ADMIN</button>
+
+    <!-- بوكس كلمة السر -->
+    <div id="passwordBox">
+      <input type="password" id="pass" placeholder="Mot de passe" style="width:100%; padding:10px;">
+      <button class="submit-btn" onclick="checkPass()">Valider</button>
+    </div>
+
+    <!-- النتائج -->
+    <div id="resultsBox">
+      <strong>Résultats :</strong><br>
+      Oui : <span id="countOui">0</span><br>
+      Non : <span id="countNon">0</span>
+    </div>
+
+    <!-- زر التصفير -->
+    <button id="resetBtn" onclick="resetAll()">Réinitialiser</button>
+
+  </div>
+
+  <script>
+    // تحميل النتائج
+    let countOui = localStorage.getItem("countOui") ? parseInt(localStorage.getItem("countOui")) : 0;
+    let countNon = localStorage.getItem("countNon") ? parseInt(localStorage.getItem("countNon")) : 0;
+
+    document.getElementById("countOui").textContent = countOui;
+    document.getElementById("countNon").textContent = countNon;
+
+    // التصويت
+    document.getElementById("surveyForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      let vote = document.querySelector('input[name="vote"]:checked').value;
+
+      if (vote === "oui") {
+        countOui++;
+        localStorage.setItem("countOui", countOui);
+      } else {
+        countNon++;
+        localStorage.setItem("countNon", countNon);
+      }
+
+      showPopup();
+    });
+
+    // popup message professionnel
+    function showPopup() {
+      let popup = document.createElement("div");
+      popup.style.position = "fixed";
+      popup.style.top = "50%";
+      popup.style.left = "50%";
+      popup.style.transform = "translate(-50%, -50%)";
+      popup.style.background = "white";
+      popup.style.padding = "25px";
+      popup.style.borderRadius = "12px";
+      popup.style.boxShadow = "0 0 25px rgba(0,0,0,0.25)";
+      popup.style.fontSize = "15px";
+      popup.style.color = "#3E2723";
+      popup.style.textAlign = "center";
+      popup.style.width = "300px";
+      popup.style.zIndex = "9999";
+
+      popup.innerHTML = `
+        <strong>Merci d’avoir pris le temps de répondre.</strong><br><br>
+        Votre avis est précieux et nous permet d’adapter notre offre à vos attentes.<br><br>
+        <button id="closePopup" style="
+          padding:10px 20px;
+          background:#3E2723;
+          color:white;
+          border:none;
+          border-radius:8px;
+          cursor:pointer;
+        ">Fermer</button>
+      `;
+
+      document.body.appendChild(popup);
+
+      document.getElementById("closePopup").onclick = function() {
+        popup.remove();
+      };
+    }
+
+    // إظهار بوكس كلمة السر
+    document.getElementById("adminBtn").addEventListener("click", function() {
+      document.getElementById("passwordBox").style.display = "block";
+    });
+
+    // التحقق من كلمة السر
+    function checkPass() {
+      let p = document.getElementById("pass").value;
+      if (p === "1950") {
+        document.getElementById("resultsBox").style.display = "block";
+        document.getElementById("resetBtn").style.display = "block";
+      } else {
+        alert("Mot de passe incorrect");
+      }
+    }
+
+    // إعادة التصفير
+    function resetAll() {
+      if (confirm("Voulez-vous vraiment remettre les résultats à zéro ?")) {
+        localStorage.setItem("countOui", 0);
+        localStorage.setItem("countNon", 0);
+        document.getElementById("countOui").textContent = 0;
+        document.getElementById("countNon").textContent = 0;
+      }
+    }
+  </script>
+
+</body>
+</html>
