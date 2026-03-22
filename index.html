@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #fdfdfd;
+            background-color: #fafafa;
             margin: 0;
             padding: 0;
             text-align: center;
@@ -31,10 +31,22 @@
             font-weight: bold;
         }
 
-        .question {
-            font-size: 18px;
+        .cadre-texte {
+            border: 2px solid #4E342E;
+            padding: 18px;
+            border-radius: 10px;
+            background-color: #fff8f3;
             margin-bottom: 25px;
+        }
+
+        .cadre-texte strong {
+            color: #4E342E;
+            font-size: 18px;
+        }
+
+        .cadre-texte span {
             color: #000;
+            font-size: 17px;
         }
 
         button {
@@ -89,12 +101,10 @@
 
         <h1>L'Atelier du Burger</h1>
 
-        <p class="question">
-            <strong>
-            Plusieurs clients nous demandent un Menu Kebab.<br>
-            Comme il n’est pas encore dans notre carte, nous aimerions savoir ce que vous souhaitez que nous ajoutions.
-            </strong>
-        </p>
+        <div class="cadre-texte">
+            <strong>Plusieurs clients nous demandent un Menu Kebab.</strong><br><br>
+            <span>Comme il n’est pas encore dans notre carte, nous aimerions savoir ce que vous souhaitez que nous ajoutions.</span>
+        </div>
 
         <button onclick="vote('oui')">Oui</button>
         <button onclick="vote('non')">Non</button>
