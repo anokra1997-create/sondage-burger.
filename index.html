@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #fafafa;
+            background-color: #ffffff;
             margin: 0;
             padding: 0;
             text-align: center;
@@ -19,33 +19,35 @@
             margin: 40px auto;
             background: #ffffff;
             padding: 25px;
-            border-radius: 12px;
-            border: 2px solid #4E342E;
-            box-shadow: 0 0 12px rgba(0,0,0,0.15);
+            border-radius: 14px;
+            border: 2px solid #5A3E36; /* Marron foncé */
+            box-shadow: 0 0 15px rgba(90, 62, 54, 0.25);
         }
 
         h1 {
             font-size: 26px;
-            margin-bottom: 15px;
-            color: #4E342E;
+            margin-bottom: 20px;
+            color: #5A3E36;
             font-weight: bold;
         }
 
         .cadre-texte {
-            border: 2px solid #4E342E;
-            padding: 18px;
-            border-radius: 10px;
-            background-color: #fff8f3;
+            border: 2px solid #5A3E36;
+            padding: 20px;
+            border-radius: 12px;
+            background-color: #FFF7F2; /* Blanc cassé avec touche marron */
             margin-bottom: 25px;
         }
 
         .cadre-texte strong {
-            color: #4E342E;
-            font-size: 18px;
+            color: #5A3E36;
+            font-size: 19px;
+            display: block;
+            margin-bottom: 10px;
         }
 
         .cadre-texte span {
-            color: #000;
+            color: #3a2a26;
             font-size: 17px;
         }
 
@@ -59,12 +61,25 @@
             cursor: pointer;
             font-weight: bold;
             color: white;
-            background-color: #4E342E;
+            background-color: #5A3E36;
             transition: 0.2s;
         }
 
         button:hover {
-            background-color: #3b2722;
+            background-color: #4A2F28;
+        }
+
+        #results {
+            font-size: 18px;
+            margin-top: 15px;
+            color: #5A3E36;
+            font-weight: bold;
+        }
+
+        hr {
+            margin: 25px 0;
+            border: none;
+            border-top: 1px solid #5A3E36;
         }
 
         #adminPanel {
@@ -72,25 +87,12 @@
             margin-top: 20px;
         }
 
-        #results {
-            font-size: 18px;
-            margin-top: 15px;
-            color: #4E342E;
-            font-weight: bold;
-        }
-
         .reset-btn {
-            background-color: #000;
+            background-color: #3a2a26;
         }
 
         .reset-btn:hover {
-            background-color: #333;
-        }
-
-        hr {
-            margin: 25px 0;
-            border: none;
-            border-top: 1px solid #4E342E;
+            background-color: #2a1d19;
         }
     </style>
 </head>
@@ -102,7 +104,7 @@
         <h1>L'Atelier du Burger</h1>
 
         <div class="cadre-texte">
-            <strong>Plusieurs clients nous demandent un Menu Kebab.</strong><br><br>
+            <strong>Plusieurs clients nous demandent un Menu Kebab.</strong>
             <span>Comme il n’est pas encore dans notre carte, nous aimerions savoir ce que vous souhaitez que nous ajoutions.</span>
         </div>
 
@@ -116,7 +118,7 @@
         <button onclick="adminLogin()">Espace Admin</button>
 
         <div id="adminPanel">
-            <h3 style="color:#4E342E;">Résultats du sondage</h3>
+            <h3 style="color:#5A3E36;">Résultats du sondage</h3>
             <p id="adminResults"></p>
             <button class="reset-btn" onclick="resetVotes()">Réinitialiser les votes</button>
         </div>
