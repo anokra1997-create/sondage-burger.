@@ -4,30 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>L'Atelier du Burger - Sondage</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #fdfdfd;
             margin: 0;
             padding: 0;
             text-align: center;
         }
+
         .container {
             max-width: 450px;
             margin: 40px auto;
-            background: white;
+            background: #ffffff;
             padding: 25px;
             border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border: 2px solid #4E342E;
+            box-shadow: 0 0 12px rgba(0,0,0,0.15);
         }
+
         h1 {
-            font-size: 22px;
+            font-size: 26px;
             margin-bottom: 15px;
+            color: #4E342E;
+            font-weight: bold;
         }
+
         .question {
             font-size: 18px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            color: #000;
         }
+
         button {
             width: 100%;
             padding: 15px;
@@ -36,22 +45,44 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            background-color: #ffcc00;
+            font-weight: bold;
+            color: white;
+            background-color: #4E342E;
+            transition: 0.2s;
         }
+
+        button:hover {
+            background-color: #3b2722;
+        }
+
         #adminPanel {
             display: none;
             margin-top: 20px;
         }
+
         #results {
             font-size: 18px;
             margin-top: 15px;
+            color: #4E342E;
+            font-weight: bold;
         }
+
         .reset-btn {
-            background-color: #e63946;
-            color: white;
+            background-color: #000;
+        }
+
+        .reset-btn:hover {
+            background-color: #333;
+        }
+
+        hr {
+            margin: 25px 0;
+            border: none;
+            border-top: 1px solid #4E342E;
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
@@ -59,8 +90,10 @@
         <h1>L'Atelier du Burger</h1>
 
         <p class="question">
-            <strong>Plusieurs clients nous demandent un Menu Kebab.<br>
-            Comme il n’est pas encore dans notre carte, nous aimerions savoir ce que vous souhaitez que nous ajoutions.</strong>
+            <strong>
+            Plusieurs clients nous demandent un Menu Kebab.<br>
+            Comme il n’est pas encore dans notre carte, nous aimerions savoir ce que vous souhaitez que nous ajoutions.
+            </strong>
         </p>
 
         <button onclick="vote('oui')">Oui</button>
@@ -73,7 +106,7 @@
         <button onclick="adminLogin()">Espace Admin</button>
 
         <div id="adminPanel">
-            <h3>Résultats du sondage</h3>
+            <h3 style="color:#4E342E;">Résultats du sondage</h3>
             <p id="adminResults"></p>
             <button class="reset-btn" onclick="resetVotes()">Réinitialiser les votes</button>
         </div>
